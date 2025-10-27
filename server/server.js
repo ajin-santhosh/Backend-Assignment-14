@@ -3,6 +3,7 @@ require('dotenv').config()
 const cors = require("cors");
 const connectDB = require("./src/config/db")
 const userRoutes = require("./src/routes/userRoutes")
+const taskRoutes = require("./src/routes/taskRoutes")
 
 
 const app = express()
@@ -12,6 +13,7 @@ const port = process.env.Port
 connectDB()
 
 app.use('/api/users',userRoutes)
+app.use('/api/tasks',taskRoutes)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
