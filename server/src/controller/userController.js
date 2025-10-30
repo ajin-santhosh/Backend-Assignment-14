@@ -59,11 +59,29 @@ const loginUser = async (req,res)=>{
         role: user.role
       }
     })
-}
-      
+}    
  catch(error){
    console.error('Error during login :', error.message)
      res.status(500).json({ message: 'Server error' })
  }
 }
-module.exports = {registerUser,loginUser}
+
+const logoutUser = async (req, res) => {
+  try{
+res.clearCookie("token", {
+    httpOnly: true,
+    secure: false, // true in production with HTTPS
+    sameSite: "lax",
+  })
+  res.status(200).json({ message: "Logged out successfully" });
+
+  }
+  catch(error){
+   console.error('Error during logout :', error.message)
+     res.status(500).json({ message: 'Server error' })
+  }
+}
+
+
+
+module.exports = {registerUser,loginUser,logoutUser}
