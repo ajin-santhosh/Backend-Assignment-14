@@ -15,9 +15,10 @@ const Login = () => {
     console.log("Login data:", formData);
 
      try {
-    const response = await axios.post("http://localhost:5002/api/users/login", formData);
-    console.log("Login successful:", response.data);
-    // You can store token or redirect user here
+    const response = await axios.post("http://localhost:5002/api/users/login", formData,{ withCredentials: true });
+    console.log("Login successful:", response.data.user.id)
+    sessionStorage.setItem('id',response.data.user.id);
+  
     navigate('/home')
   } catch (error) {
     console.error("Login error:", error.response?.data || error.message);
@@ -56,7 +57,7 @@ const Login = () => {
         </button>
         <p className="text-center text-gray-600 mt-4">
   Don’t have an account?{" "}
-  <Link to="/" className="text-blue-500 hover:underline">
+  <Link to="/register" className="text-blue-500 hover:underline">
     Register
   </Link>
 </p>

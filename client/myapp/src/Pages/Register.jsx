@@ -19,11 +19,11 @@ const Register = () => {
     try {
       const response = await axios.post("http://localhost:5002/api/users/register", formData);
       console.log("Registration successful:", response.data);
-      // Optional: redirect to login page
-      // navigate("/login"); // if using react-router-dom's useNavigate
+      
+       navigate("/login"); 
     } catch (error) {
       console.error("Registration error:", error.response?.data || error.message);
-      // Optional: show error message to user
+      
     }
 
   };
